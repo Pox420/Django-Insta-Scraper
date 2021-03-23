@@ -1,0 +1,83 @@
+{% extends 'InstaProfileApp/base.html' %}
+{% load static %}
+
+{% block title %}
+    Instagram Profile
+{% endblock title %}
+
+
+{% block content %}
+
+    <div class="navbar navbar-light bg-light">
+        <div class="container">
+            <img src="{% static 'InstaProfileApp/insta-name.png' %}" class="navbar-brand mx-auto" alt="" height="80x;">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="container ">
+            <form action="{% url 'profile' %}" method="POST">
+                {% csrf_token %}
+                <div class="container">
+                    <div class="input-group m-3 mx-auto" style="width: 500px;">
+                        <input type="search" name="username" class="form-control rounded primary"
+                               placeholder="Enter Username ..."
+                               aria-label="Search"
+                               aria-describedby="search-addon"/>
+                        <input type="submit" value="Search" class="btn btn-outline-primary">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <div class="row mt-3">
+        <div class="container">
+            <div class="">
+                <img class="rounded-circle mx-auto d-block z-depth-2" alt="100x100"
+                     src="{{ user_profile_image }}"
+                     data-holder-rendered="true">
+                <h1 class="text-center text-primary">{{ user_name }}</h1>
+                <p class="text-center text-dark"><strong>{{ posts }} </strong>Posts &nbsp; &nbsp;
+                    <strong>{{ followers }} </strong>Followers
+                    &nbsp; &nbsp;<strong>{{ following }} </strong>Followings</p>
+            </div>
+        </div>
+    </div>
+
+
+    <hr>
+
+
+
+    {#    <div class="container">#}
+    {#        {% for images in images_links %}#}
+    {#            <div class="row" style="margin: 15px;">#}
+    {#                <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox" data-gallery="gallery"#}
+    {#                   class="col-md-4">#}
+    {#                    <img src="{{ images }}" class="img-fluid rounded">#}
+    {#                </a>#}
+    {#            </div>#}
+    {#        {% endfor %}#}
+    {#    </div>#}
+
+
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row text-center text-lg-left">
+            {% for image in images_links %}
+                <div class="col-lg-3 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                        <img class="img-fluid img-thumbnail" src="{{ image }}"
+                             alt="">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- /.container -->
+
+{% endblock content %}

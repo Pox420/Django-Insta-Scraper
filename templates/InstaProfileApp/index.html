@@ -1,0 +1,32 @@
+{% extends 'InstaProfileApp/base.html' %}
+{% load static %}
+
+{% block title %}
+    Instagram Profile
+{% endblock title %}
+
+
+{% block content %}
+
+    <div class="navbar navbar-light bg-light">
+        <div class="container">
+            <img src="{% static 'InstaProfileApp/insta-name.png' %}" class="navbar-brand mx-auto" alt="" height="80x;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="container ">
+            <form action="{% url 'profile' %}" method="POST">
+                {% csrf_token %}
+                <div class="container">
+                    <div class="input-group m-3 mx-auto" style="width: 500px;">
+                        <input type="search" name="username" class="form-control rounded primary" placeholder="Enter Username ..."
+                               aria-label="Search"
+                               aria-describedby="search-addon"/>
+                        <input type="submit" value="Search" class="btn btn-outline-primary">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
